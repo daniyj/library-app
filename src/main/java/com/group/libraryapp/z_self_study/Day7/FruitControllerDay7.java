@@ -35,6 +35,7 @@ public class FruitControllerDay7 {
     // 팔린 금액과 팔리지 않은 금액 조회 API
     @GetMapping("/fruit/stat")
     public GetSalesAmountResponse getSalesAmount(@RequestParam String name){
+        System.out.println("name = " + name);
         return fruitServiceDay7.getSalesAmount(name);
     }
 

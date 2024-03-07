@@ -32,8 +32,16 @@ public class FruitService_Day7 {
     }
 
     public GetSalesAmountResponse getSalesAmount(String name) {
+//        Fruit fruit = fruitRepositoryDay7.findByName(name).orElseThrow(() -> new IllegalArgumentException());
+//        System.out.println("fruit.getId() = " + fruit.getId());
         Long soldPrice = fruitRepositoryDay7.getTotalSoldPrice(name);
-        Long notSoldPrice = fruitRepositoryDay7.getTotalNotSoldPrice(name);
+
+        Long notSoldPrice;
+        if (fruitRepositoryDay7.getTotalNotSoldPrice(name) != null) {
+            notSoldPrice = fruitRepositoryDay7.getTotalNotSoldPrice(name);
+        } else {
+            notSoldPrice = 0L;
+        }
 
         return new GetSalesAmountResponse(soldPrice, notSoldPrice);
     }

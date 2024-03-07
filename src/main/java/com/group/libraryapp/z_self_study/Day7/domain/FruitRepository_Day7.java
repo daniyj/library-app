@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface FruitRepository_Day7 extends JpaRepository<Fruit,Long> {
     @Query("SELECT SUM(f.price) FROM Fruit f WHERE f.name = :name AND f.isSold = true")
@@ -12,6 +13,8 @@ public interface FruitRepository_Day7 extends JpaRepository<Fruit,Long> {
 
     @Query("SELECT SUM(f.price) FROM Fruit f WHERE f.name = :name AND f.isSold = false")
     Long getTotalNotSoldPrice(@Param("name") String name);
+
+    Optional<Fruit> findByName(String name);
 
     Long countByName(String name);
     List<Fruit> findByPriceGreaterThanEqual(Long price);
